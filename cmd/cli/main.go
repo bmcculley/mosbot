@@ -13,7 +13,7 @@ import (
 
 	"github.com/atotto/clipboard"
 	"pkg.cld19.com/mosbot/internal/client"
-	"pkg.cld19.com/mosbot/internal/core"
+	"pkg.cld19.com/mosbot/core"
 )
 
 var (
@@ -21,6 +21,7 @@ var (
 	docType    string
 	docId      string
 	configPath string
+	getTitle   bool
 	copyToClip bool
 	openURL    bool
 )
@@ -31,6 +32,7 @@ func main() {
 	docType = "doc"
 	docId = "0"
 	configPath = ""
+	getTitle = false
 	copyToClip = false
 	openURL = false
 
@@ -66,6 +68,9 @@ func main() {
 		case "-c":
 		case "--copy":
 			copyToClip = true
+		case "-t":
+		case "--title":
+			getTitle = true
 		case "-h":
 		case "--help":
 		case "help":
@@ -85,19 +90,24 @@ func main() {
 		log.Fatal(err)
 	}
 
-	pubURL, _ := core.GeneratePublicUrl(docId)
-	title, err := client.GetHtmlTitle(pubURL)
+	var title string
 
-	if err != nil {
-		log.Println(err)
+	if getTitle {
+		pubURL, _ := core.GeneratePublicUrl(docId)
+		title, err = client.GetHtmlTitle(pubURL)
+	}
+
+	if err != nil || !getTitle {
 		fmt.Println(url)
 	} else {
 		fmt.Printf("%s\n%s\n", title, url)
 	}
 
-	err = clipboard.WriteAll(url)
-	if err != nil {
-		log.Fatal(err)
+	if copyToClip {
+		err = clipboard.WriteAll(url)
+		if err != nil {
+			log.Fatal(err)
+		}
 	}
 }
 
@@ -172,6 +182,8 @@ func parseConfigFile(path string) {
 				copyToClip, _ = strconv.ParseBool(configVal)
 			case "MOS_OPEN_URL":
 				openURL, _ = strconv.ParseBool(configVal)
+			case "MOS_GET_TITLE":
+				getTitle, _ = strconv.ParseBool(configVal)
 			}
 			fmt.Println(configKey, configVal)
 		} else {

@@ -1,0 +1,8 @@
+github.com/atotto/clipboard v0.1.4 h1:EH0zSVneZPSuFR11BlR9YppQTVDbh5+16AmcJi4g1z4=
+github.com/atotto/clipboard v0.1.4/go.mod h1:ZY9tmq7sm5xIbd9bOK4onWV4S6X0u6GY7Vn0Yu86PYI=
+github.com/fnproject/fdk-go v0.0.24 h1:2G03I/bSPDVd9+kj+6432wDzpHBJ+a3t1QI9H2JnmSw=
+github.com/fnproject/fdk-go v0.0.24/go.mod h1:I1vcgeMhAypxJ4pxIgq/pERZJvmanYYSlZaScO+oSps=
+golang.org/x/net v0.4.0 h1:Q5QPcMlvfxFTAPV0+07Xz/MpK9NTXu2VDUuy0FeMfaU=
+golang.org/x/net v0.4.0/go.mod h1:MBQ8lrhLObU/6UmLb4fmbmk5OcyYmqtbGd/9yIeKjEE=
+pkg.cld19.com/mosbot v0.1.1 h1:rpg9JfibW62cyBXofWvl0eZbnXNPY4ZWBQEUZlufoK0=
+pkg.cld19.com/mosbot v0.1.1/go.mod h1:6+kZt05KCpEGKCPuk3+Rx5I7vddpFDVjwjcQmsv1KVA=

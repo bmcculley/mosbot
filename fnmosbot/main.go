@@ -5,8 +5,10 @@ import (
 	"encoding/json"
 	"io"
 	"log"
+	"strings"
+	"regexp"
 
-	"pkg.cld19.com/mosbot/internal/core"
+	"pkg.cld19.com/mosbot/core"
 	fdk "github.com/fnproject/fdk-go"
 )
 
@@ -15,17 +17,24 @@ func main() {
 }
 
 type mosbotRequest struct {
-	DocType string `json:"type"`
-	DocId   string `json:"id"`
+	Text string `json:"text"`
 }
 
 func myHandler(ctx context.Context, in io.Reader, out io.Writer) {
-	p := &mosbotRequest{DocType: "doc", DocId: "0"}
+	p := &mosbotRequest{Text: "doc 0"}
 	json.NewDecoder(in).Decode(p)
-	log.Println(p)
-	genUrl, err := core.GenerateUrl(p.DocType, p.DocId)
-	if err != nil {
-		log.Fatal(err)
+	docParts := strings.Fields(p.Text)
+	match := false
+	if len(docParts) == 2 {
+		match, _ = regexp.MatchString("^[0-9]+.[0-9]$", docParts[1])
+	}
+	genUrl := "Bad Request."
+	if match {
+		var err error
+		genUrl, err = core.GenerateUrl(docParts[0], docParts[1])
+		if err != nil {
+			log.Fatal(err)
+		}
 	}
 	msg := struct {
 		Text string `json:"text"`
