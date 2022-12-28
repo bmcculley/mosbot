@@ -1,2 +1,3 @@
 MOS_COPY_URL=true
 MOS_OPEN_URL=true
+MOS_GET_TITLE=true
