@@ -13,7 +13,7 @@ import (
 
 	"github.com/atotto/clipboard"
 	"pkg.cld19.com/mosbot/internal/client"
-	"pkg.cld19.com/mosbot/internal/core"
+	"pkg.cld19.com/mosbot/core"
 )
 
 var (

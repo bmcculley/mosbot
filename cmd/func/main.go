@@ -6,7 +6,7 @@ import (
 	"io"
 	"log"
 
-	"pkg.cld19.com/mosbot/internal/core"
+	"pkg.cld19.com/mosbot/core"
 	fdk "github.com/fnproject/fdk-go"
 )
 
