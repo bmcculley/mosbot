@@ -2,6 +2,31 @@ package core
 
 import "testing"
 
+func TestCheckId(t *testing.T) {
+	got, err := CheckIfId("1234567.1")
+	if err != nil {
+		t.Errorf("got %q want nil", err)
+	}
+
+	want := true
+	if got != want {
+		t.Errorf("got %t want %t", got, want)
+	}
+}
+
+func TestCheckI2(t *testing.T) {
+	got, err := CheckIfId("1234567A.1")
+
+	if err != nil {
+		t.Errorf("got %q want nil", err)
+	}
+
+	want := false
+	if got != want {
+		t.Errorf("got %t want %t", got, want)
+	}
+}
+
 func TestGenerateDocUrl1(t *testing.T) {
 	got, err := GenerateUrl("doc", "1234567.1")
 

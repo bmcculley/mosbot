@@ -6,7 +6,6 @@ import (
 	"log"
 	"os"
 	"os/exec"
-	"regexp"
 	"runtime"
 	"strconv"
 	"strings"
@@ -49,7 +48,7 @@ func main() {
 	}
 
 	for i, v := range argsv {
-		docid, _ := regexp.MatchString("^[0-9]+.[0-9]$", v)
+		docid, _ := core.CheckIfId(v)
 		if docid {
 			v = "id"
 		}

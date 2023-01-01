@@ -6,7 +6,6 @@ import (
 	"io"
 	"log"
 	"strings"
-	"regexp"
 
 	"pkg.cld19.com/mosbot/core"
 	fdk "github.com/fnproject/fdk-go"
@@ -26,7 +25,7 @@ func myHandler(ctx context.Context, in io.Reader, out io.Writer) {
 	docParts := strings.Fields(p.Text)
 	match := false
 	if len(docParts) == 2 {
-		match, _ = regexp.MatchString("^[0-9]+.[0-9]$", docParts[1])
+		match, _ = core.CheckIfId(docParts[1])
 	}
 	genUrl := "Bad Request."
 	if match {

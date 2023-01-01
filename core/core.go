@@ -4,7 +4,16 @@ import (
 	"errors"
 	"fmt"
 	"strings"
+	"regexp"
 )
+
+func CheckIfId(possID string) (bool, error) {
+	isDocId, err := regexp.MatchString("^[0-9]+.[0-9]$", possID)
+	if err != nil {
+		return false, err
+	}
+	return isDocId, nil
+}
 
 func GenerateUrl(docType, docID string) (string, error) {
 	mosurl := ""
